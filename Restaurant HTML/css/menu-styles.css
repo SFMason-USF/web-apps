@@ -4,6 +4,10 @@
   border: 1px solid black;
 }
 
+.category-description {
+	font-style: italic;
+}
+
 .item-description {
   width: 90%;
   padding: 1% 5%;

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- TODO: Tabify american menu. -->
+<!-- NOTE: Tried to do dropdown for American menu, wasn't working. I'm fine with the two sets of tabs, so I'm leaving it the way it is. -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Restraunt Menu</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/menu-styles.css">
+</head>
+
+<body>
+    <h1>Pavilion Diner</h1>
+    <nav>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a href="#menu" class="nav-link active" data-toggle="tab" role="tab" aria-controls="menu" aria-expanded="true">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a href="#chinese-menu" class="nav-link" data-toggle="tab" role="tab" aria-controls="chinese-menu">Chinese Menu</a>
+            </li>
+            <li class="nav-item">
+                <a href="#map" class="nav-link" data-toggle="tab" role="tab" aria-controls="map">Map</a>
+            </li>
+        </ul>
+    </nav>
+    <main class="tab-content">
+        <section id="menu" class="tab-pane fade show active">
+            <h2 class="menu-header">Main Menu</h2>
+            <nav>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a href="#apps" class="nav-link active" role="tab" data-toggle="tab" aria-controls="apps">Appetizers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#entrees" class="nav-link" role="tab" data-toggle="tab" aria-controls="entrees">Entrees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#sides" class="nav-link" role="tab" data-toggle="tab" aria-controls="sides">Sides</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#desserts" class="nav-link" role="tab" data-toggle="tab" aria-controls="desserts">Desserts</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="categories">
+                <div id="apps" class="category tab-pane active" role="tabpanel">
+                    <h3 class="category-header">Appetizers</h3>
+                    <span class="category-description">Start some of our delicious appetizers.</span>
+                    <div class="menu-item">
+                        <h4 class="item-name">Pepper Poppers</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/app1.png" alt="Pepper Poppers">
+                                <p>Spicy stuffed jalapenos.</p>
+                            </div>
+                            <span class="price">$5.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h4 class="item-name">Party Bread</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/app2.png" alt="Party Bread">
+                                <p>Warm bread topped with mozzarella cheese and freshly cut onions.</p>
+                            </div>
+                            <span class="price">$5.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h4 class="item-name">Glazed Chicken Wings</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/app3.png" alt="Glazed Chicken Wings">
+                                <p>8 wings glazed to perfection with our signature sauce</p>
+                            </div>
+                            <span class="price">$7.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h4 class="item-name">Guacamole</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/app4.png" alt="Guacamole">
+                                <p>Fresh guacamole with chopped tomatoes.</p>
+                            </div>
+                            <span class="price">$6.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="entrees" class="category tab-pane" role="tabpanel">
+                    <h3 class="category-header">Entrees</h3>
+                    <span class="category-description">Enjoy a scrumptious entree.</span>
+                    <div class="menu-item">
+                        <h4 class="item-name">Gorgonzola Orange Chicken Tenders</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/entree1.png" alt="Gorgonzola Orange Chicken Tenders">
+                                <p>Chicken tenders soaked in marmalade and topped with gorgonzola cheese.</p>
+                            </div>
+                            <span class="price">$11.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h4 class="item-name">Korean Beef &amp; Rice</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/entree2.png" alt="Korean Beef & Rice">
+                                <p>Cooked in soy sauce and ginger, served over rice.</p>
+                            </div>
+                            <span class="price">$10.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h4 class="item-name">Shrimp Scampi</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/entree3.png" alt="Shrimp Scampi">
+                                <p>Topped with spices and bread crumbs.</p>
+                            </div>
+                            <span class="price">$14.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h4 class="item-name">Grilled Maple Pork Chops</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/entree4.png" alt="Grilled Maple Pork Chops">
+                                <p>Pork Chops soaked in maple marinade and grilled to sizzling perfection</p>
+                            </div>
+                            <span class="price">$12.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="sides" class="category tab-pane" role="tabpanel">
+                    <h3 class="category-header">Sides</h3>
+                    <span class="category-description">Accompany your entree with one our healthy sides.</span>
+                    <div class="menu-item">
+                        <h4 class="item-name">Marinated Asparagus</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/side1.png" alt="Marinated Asparagus">
+                                <p>Topped with blue cheese crumbs.</p>
+                            </div>
+                            <span class="price">$3.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h4 class="item-name">Parmesan Roasted Broccoli</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/side2.png" alt="Parmesan Roasted Broccoli">
+                                <p>Fresh broccoli roasted with parmesan.</p>
+                            </div>
+                            <span class="price">$2.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h4 class="item-name">Fried Carrots</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/side3.png" alt="Fried Carrots">
+                                <p>Served with ranch.</p>
+                            </div>
+                            <span class="price">$2.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h4 class="item-name">Grilled Mushrooms</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/side4.png" alt="Grilled Mushrooms">
+                                <p>Made with various herbs and spices.</p>
+                            </div>
+                            <span class="price">$3.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="desserts" class="category tab-pane" role="tabpanel">
+                    <h3 class="category-header">Desserts</h3>
+                    <span class="category-description">Finish off with a delectable dessert.</span>
+                    <div class="menu-item">
+                        <h4 class="item-name">Almond Fudge Cake</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/dessert1.png" alt="Almond Fudge Cake">
+                                <p>Rich Almond Fudge Cake topped with whipped cream and raspberry glaze</p>
+                            </div>
+                            <span class="price">$6.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h4 class="item-name">Frozen Chocolate Monkey Treats</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/dessert2.png" alt="Frozen Chocolate Monkey Treats">
+                                <p>Chocolate coated frozen bananas dipped in your choice of: Nuts, Coconuts, or Sprinkles</p>
+                            </div>
+                            <span class="price">$6.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h4 class="item-name">Lemony Coconut Frozen Yogurt</h4>
+                        <div class="item-description">
+                            <div>
+                                <img src="img/dessert3.png" alt="Lemony Coconut Frozen Yogurt">
+                                <p>Served in a waffle cup. Topped with a variety of fresh berries. </p>
+                            </div>
+                            <span class="price">$5.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="chinese-menu" class="tab-pane fade">
+            <h2 class="menu-header">Chinese Menu</h2>
+            <!-- TODO:  Finish the main menu, then copy the finished menu items (sans images) into this chinese menu. -->
+            <table id="chinese-menu-table">
+                <tr>
+                    <td id="chinese-appetizers">
+                        <table>
+                            <tr>
+                                <th colspan="2">Choose 1 Appetizer</th>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Pepper Poppers</span></td>
+                                <td><span class="price">$5.00</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Party Bread</span></td>
+                                <td><span class="price">$5.00</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Glazed Chicken Wings</span></td>
+                                <td><span class="price">$7.00</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Guacamole</span></td>
+                                <td><span class="price">$6.00</span></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td id="chinese-entrees">
+                        <table>
+                            <tr>
+                                <th colspan="2">Choose 1 Entree</th>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Gorgonzola Orange Chicken Tenders</span></td>
+                                <td><span class="price">$11.00</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Korean Beef &amp; Rice</span></td>
+                                <td><span class="price">$10.00</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Shrimp Scampi</span></td>
+                                <td><span class="price">$14.00</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Grilled Maple Pork Chops</span></td>
+                                <td><span class="price">$12.00</span></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td id="chinese-sides">
+                        <table>
+                            <tr>
+                                <th colspan="2">Choose 2 Sides</th>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Marinated Asparagus</span></td>
+                                <td><span class="price">$3.00</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Parmesan Roasted Broccoli</span></td>
+                                <td><span class="price">$2.00</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Fried Carrots</span></td>
+                                <td><span class="price">$2.00</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="chinese-item-name">Grilled Mushrooms</span></td>
+                                <td><span class="price">$3.00</span></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section id="map" class="tab-pane fade">
+            <h2>Where to find us</h2>
+            <img src="https://maps.googleapis.com/maps/api/staticmap?size=400x400&markers=color:blue%7c4202+E+Fowler+Ave,Tampa,FL+33620,USA&zoom=12&key=AIzaSyBt1iV5wXh6a0IX6ccA8xLJR_QvImrnDwc"
+                alt="Map">
+        </section>
+    </main>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+
+</html>
