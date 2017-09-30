@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- TODO: Tabify american menu. -->
-<!-- NOTE: Tried to do dropdown for American menu, wasn't working. I'm fine with the two sets of tabs, so I'm leaving it the way it is. -->
-
 <head>
     <meta charset="UTF-8">
     <title>Restraunt Menu</title>
@@ -14,41 +11,44 @@
 </head>
 
 <body>
-    <h1>Pavilion Diner</h1>
-    <nav>
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-                <a href="#menu" class="nav-link active" data-toggle="tab" role="tab" aria-controls="menu" aria-expanded="true">Menu</a>
-            </li>
-            <li class="nav-item">
-                <a href="#chinese-menu" class="nav-link" data-toggle="tab" role="tab" aria-controls="chinese-menu">Chinese Menu</a>
-            </li>
-            <li class="nav-item">
-                <a href="#map" class="nav-link" data-toggle="tab" role="tab" aria-controls="map">Map</a>
-            </li>
-        </ul>
-    </nav>
-    <main class="tab-content">
-        <section id="menu" class="tab-pane fade show active">
-            <h2 class="menu-header">Main Menu</h2>
-            <nav>
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a href="#apps" class="nav-link active" role="tab" data-toggle="tab" aria-controls="apps">Appetizers</a>
+    <header>
+        <nav id="main-nav" class="navbar navbar-expand-sm navbar-light bg-light">
+            <a href="#" class="navbar-brand"><img src="img/logo.png" alt="logo" width="30" height="30"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav-collapse" aria-controls="main-nav-collapse"
+                aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div id="main-nav-collapse" class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#menu">American Menu <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="#entrees" class="nav-link" role="tab" data-toggle="tab" aria-controls="entrees">Entrees</a>
+                        <a class="nav-link" href="#chinese-menu">Chinese Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#sides" class="nav-link" role="tab" data-toggle="tab" aria-controls="sides">Sides</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#desserts" class="nav-link" role="tab" data-toggle="tab" aria-controls="desserts">Desserts</a>
+                        <a class="nav-link" href="#map">Map</a>
                     </li>
                 </ul>
-            </nav>
-            <div class="categories">
-                <div id="apps" class="category tab-pane active" role="tabpanel">
+            </div>
+        </nav>
+        <div class="jumbotron jumbotron-fluid">
+            <h1 class="container-fluid">Pavilion Diner</h1>
+        </div>
+    </header>
+    <main class="container-fluid">
+        <section id="menu">
+            <header>
+                <h2 class="menu-header">Main Menu</h2>
+                <nav id="menu-tabs" class="nav nav-pills flex-column flex-sm-row">
+                    <a href="#apps" class="nav-item nav-link active" data-toggle="pill" role="tab" aria-controls="apps">Appetizers</a>
+                    <a href="#entrees" class="nav-item nav-link" data-toggle="pill" role="tab" aria-controls="entrees">Entrees</a>
+                    <a href="#sides" class="nav-item nav-link" data-toggle="pill" role="tab" aria-controls="sides">Sides</a>
+                    <a href="#desserts" class="nav-item nav-link" data-toggle="pill" role="tab" aria-controls="desserts">Desserts</a>
+                </nav>
+            </header>
+            <div class="categories tab-content">
+                <div id="apps" class="category tab-pane fade show active" role="tabpanel">
                     <h3 class="category-header">Appetizers</h3>
                     <span class="category-description">Start some of our delicious appetizers.</span>
                     <div class="menu-item">
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="entrees" class="category tab-pane" role="tabpanel">
+                <div id="entrees" class="category tab-pane fade" role="tabpanel">
                     <h3 class="category-header">Entrees</h3>
                     <span class="category-description">Enjoy a scrumptious entree.</span>
                     <div class="menu-item">
@@ -136,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="sides" class="category tab-pane" role="tabpanel">
+                <div id="sides" class="category tab-pane fade" role="tabpanel">
                     <h3 class="category-header">Sides</h3>
                     <span class="category-description">Accompany your entree with one our healthy sides.</span>
                     <div class="menu-item">
@@ -180,7 +180,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="desserts" class="category tab-pane" role="tabpanel">
+                <div id="desserts" class="category tab-pane fade" role="tabpanel">
                     <h3 class="category-header">Desserts</h3>
                     <span class="category-description">Finish off with a delectable dessert.</span>
                     <div class="menu-item">
@@ -216,7 +216,8 @@
                 </div>
             </div>
         </section>
-        <section id="chinese-menu" class="tab-pane fade">
+        <hr>
+        <section id="chinese-menu">
             <h2 class="menu-header">Chinese Menu</h2>
             <!-- TODO:  Finish the main menu, then copy the finished menu items (sans images) into this chinese menu. -->
             <table id="chinese-menu-table">
@@ -293,7 +294,8 @@
                 </tr>
             </table>
         </section>
-        <section id="map" class="tab-pane fade">
+        <hr>
+        <section id="map">
             <h2>Where to find us</h2>
             <img src="https://maps.googleapis.com/maps/api/staticmap?size=400x400&markers=color:blue%7c4202+E+Fowler+Ave,Tampa,FL+33620,USA&zoom=12&key=AIzaSyBt1iV5wXh6a0IX6ccA8xLJR_QvImrnDwc"
                 alt="Map">
