@@ -5,7 +5,7 @@ def read_grammar_defs(filename)
   filename = 'grammars/' + filename unless filename.start_with? 'grammars/'
   filename += '.g' unless filename.end_with? '.g'
   contents = open(filename, 'r') { |f| f.read }
-  contents.scan(/\{(.+?)\}/m).map do |rule_array|
+  contents.scan(/{(.+?)}/m).map do |rule_array|
     rule_array[0]
   end
 end
@@ -21,7 +21,12 @@ end
 #   split_definition "\n<start>\nYou <adj> <name> . ;\n;\n"
 #     returns ["<start>", "You <adj> <name> .", ""]
 def split_definition(raw_def)
-  # TODO: your implementation here
+  words = raw_def.split(/;\n|\n/, -1)
+  if words[0].empty?
+    words.delete_at(0)
+  end
+  words.delete_at(-1)
+  return words
 end
 
 # Takes an array of definitions where the definitions have been
@@ -34,7 +39,17 @@ end
 # to_grammar_hash([["<start>", "The   <object>   <verb>   tonight."], ["<object>", "waves", "big    yellow       flowers", "slugs"], ["<verb>", "sigh <adverb>", "portend like <object>", "die <adverb>"], ["<adverb>", "warily", "grumpily"]])
 # returns {"<start>"=>[["The", "<object>", "<verb>", "tonight."]], "<object>"=>[["waves"], ["big", "yellow", "flowers"], ["slugs"]], "<verb>"=>[["sigh", "<adverb>"], ["portend", "like", "<object>"], ["die", "<adverb>"]], "<adverb>"=>[["warily"], ["grumpily"]]}
 def to_grammar_hash(split_def_array)
-  # TODO: your implementation here
+  myHash = Hash.new
+  split_def_array.each {|x|
+    myArray = Array.new
+    x.each_with_index {|y, yi|
+      unless yi == 0
+        myArray.push(y.split(/\s+/))
+      end
+    }
+    myHash[x[0]] = myArray
+  }
+  return myHash
 end
 
 # Returns true iff s is a non-terminal
@@ -42,7 +57,7 @@ end
 #        and the last character is >
 def is_non_terminal?(s)
   s.strip()
-  return s[0] == "<" and s[-1] == ">"
+  return s[0] == '<' && s[-1] == '>'
 end
 
 # Given a grammar hash (as returned by to_grammar_hash)
@@ -74,7 +89,10 @@ def rsg(filename)
 end
 
 if __FILE__ == $0
-  # TODO: your implementation of the following
+  #puts 'Please enter the name of the grammar file: '
+  #STDOUT.flush
+  #gFile = gets().chomp
+  #rsg(gFile)
   # prompt the user for the name of a grammar file
   # rsg that file
 end
