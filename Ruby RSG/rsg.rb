@@ -85,14 +85,21 @@ end
 # read the grammar file and print a
 # random expansion of the grammar
 def rsg(filename)
-  # TODO: your implementation here
+  # TODO: convert from Python to Ruby
+	# defs = read_grammar_defs(filename)
+	# split_defs = [split_definition(def) for def in defs]
+	# hash = to_grammar_hash(split_defs)
+	# generated_sentence = expand(hash)
+	# print(generated_sentence)
+	# --or--
+	# print(expand(to_grammar_hash([split_definition(def) for def in read_grammar_defs(filename)])))
 end
 
 if __FILE__ == $0
-  #puts 'Please enter the name of the grammar file: '
-  #STDOUT.flush
-  #gFile = gets().chomp
-  #rsg(gFile)
   # prompt the user for the name of a grammar file
   # rsg that file
+  puts 'Please enter the name of the grammar file: '
+  STDOUT.flush
+  gFile = gets().chomp
+  rsg(gFile)
 end
