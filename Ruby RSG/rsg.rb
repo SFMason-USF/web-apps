@@ -21,6 +21,7 @@ end
 #   split_definition "\n<start>\nYou <adj> <name> . ;\n;\n"
 #     returns ["<start>", "You <adj> <name> .", ""]
 def split_definition(raw_def)
+  puts raw_def
   words = raw_def.split(/;\n|\n/, -1)
   if words[0].empty?
     words.delete_at(0)
@@ -79,20 +80,30 @@ end
 # case-insensitively, <NOUN> matches <Noun> and <noun>, for example.
 def expand(grammar, non_term="<start>")
   # TODO: your implementation here
+  non_term.downcase!
+  template = grammar[non_term].sample() #pick a random template
+  str = ""
+  puts template.class
+  template.each {|term| str += (is_non_terminal?(term) ? expand(grammar, term) : term) }
+  return str
 end
 
 # Given the name of a grammar file,
 # read the grammar file and print a
 # random expansion of the grammar
 def rsg(filename)
-  # TODO: convert from Python to Ruby
 	# defs = read_grammar_defs(filename)
 	# split_defs = [split_definition(def) for def in defs]
 	# hash = to_grammar_hash(split_defs)
 	# generated_sentence = expand(hash)
 	# print(generated_sentence)
 	# --or--
-	# print(expand(to_grammar_hash([split_definition(def) for def in read_grammar_defs(filename)])))
+  # print(expand(to_grammar_hash([split_definition(def) for def in read_grammar_defs(filename)])))
+  defs = read_grammar_defs(filename)
+  split_defs = defs.map(split_definition)
+  hash = to_grammar_hash(split_defs)
+  generated_sentence = expand(hash)
+  puts(generated_sentence)
 end
 
 if __FILE__ == $0
