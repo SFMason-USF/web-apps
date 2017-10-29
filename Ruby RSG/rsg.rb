@@ -21,7 +21,6 @@ end
 #   split_definition "\n<start>\nYou <adj> <name> . ;\n;\n"
 #     returns ["<start>", "You <adj> <name> .", ""]
 def split_definition(raw_def)
-  puts raw_def
   words = raw_def.split(/;\n|\n/, -1)
   if words[0].empty?
     words.delete_at(0)
@@ -83,8 +82,7 @@ def expand(grammar, non_term="<start>")
   non_term.downcase!
   template = grammar[non_term].sample() #pick a random template
   str = ""
-  puts template.class
-  template.each {|term| str += (is_non_terminal?(term) ? expand(grammar, term) : term) }
+  template.each { |term| str += (is_non_terminal?(term) ? expand(grammar, term) : term).strip() + " " }
   return str
 end
 
@@ -100,7 +98,7 @@ def rsg(filename)
 	# --or--
   # print(expand(to_grammar_hash([split_definition(def) for def in read_grammar_defs(filename)])))
   defs = read_grammar_defs(filename)
-  split_defs = defs.map(split_definition)
+  split_defs = defs.map { |d| split_definition(d) }
   hash = to_grammar_hash(split_defs)
   generated_sentence = expand(hash)
   puts(generated_sentence)
