@@ -83,6 +83,9 @@ def expand(grammar, non_term="<start>")
   template = grammar[non_term].sample() #pick a random template
   str = ""
   template.each { |term| str += (is_non_terminal?(term) ? expand(grammar, term) : term).strip() + " " }
+  if non_term == "<start>"
+    str.strip!
+    str += "."
   return str
 end
 
