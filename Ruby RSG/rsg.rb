@@ -21,7 +21,10 @@ end
 #   split_definition "\n<start>\nYou <adj> <name> . ;\n;\n"
 #     returns ["<start>", "You <adj> <name> .", ""]
 def split_definition(raw_def)
-  words = raw_def.split(/;\n|\n/, -1)
+  words = raw_def.split(/\n/, -1)
+  words.each {|word|
+    word.tr(';', '')
+  }
   if words[0].empty?
     words.delete_at(0)
   end
