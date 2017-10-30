@@ -23,7 +23,8 @@ end
 def split_definition(raw_def)
   words = raw_def.split(/\n/, -1)
   words.each {|word|
-    word.tr(';', '')
+    word.tr!(';', '')
+    word.strip!
   }
   if words[0].empty?
     words.delete_at(0)
@@ -46,11 +47,13 @@ def to_grammar_hash(split_def_array)
   split_def_array.each {|x|
     myArray = Array.new
     x.each_with_index {|y, yi|
-      unless yi == 0
+      unless yi == 0 || y.nil? || y == 0
         myArray.push(y.split(/\s+/))
       end
     }
-    myHash[x[0]] = myArray
+    unless myArray.nil?
+      myHash[x[0].gsub(/\s+/, '')] = myArray
+    end
   }
   return myHash
 end
@@ -80,15 +83,16 @@ end
 # as described above, don't have some sort of endless recursive cycle in the
 # expansion, etc.). The names of non-terminals should be considered
 # case-insensitively, <NOUN> matches <Noun> and <noun>, for example.
-def expand(grammar, non_term="<start>")
+def expand(grammar, non_term='<start>')
   # TODO: your implementation here
   non_term.downcase!
-  template = grammar[non_term].sample() #pick a random template
-  str = ""
-  template.each { |term| str += (is_non_terminal?(term) ? expand(grammar, term) : term).strip() + " " }
-  if non_term == "<start>"
-    str.strip!
-    str += "."
+    template = grammar[non_term].sample() #pick a random template
+    str = ""
+    template.each { |term| str += (is_non_terminal?(term) ? expand(grammar, term) : term).strip + ' '}
+    if non_term == "<start>"
+      str.strip!
+      str += ''
+    end
   return str
 end
 
