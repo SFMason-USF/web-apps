@@ -52,7 +52,7 @@ def to_grammar_hash(split_def_array)
       end
     }
     unless myArray.nil?
-      myHash[x[0].gsub(/\s+/, '')] = myArray
+      myHash[x[0].gsub(/\s+/, '').downcase] = myArray
     end
   }
   return myHash
@@ -84,15 +84,13 @@ end
 # expansion, etc.). The names of non-terminals should be considered
 # case-insensitively, <NOUN> matches <Noun> and <noun>, for example.
 def expand(grammar, non_term='<start>')
-  # TODO: your implementation here
   non_term.downcase!
-    template = grammar[non_term].sample() #pick a random template
-    str = ""
-    template.each { |term| str += (is_non_terminal?(term) ? expand(grammar, term) : term).strip + ' '}
-    if non_term == "<start>"
-      str.strip!
-      str += ''
-    end
+  template = grammar[non_term].sample() #pick a random template
+  str = ""
+  template.each { |term| str += (is_non_terminal?(term) ? expand(grammar, term) : term).strip + ' '}
+  if non_term == "<start>"
+    str.strip!
+  end
   return str
 end
 
