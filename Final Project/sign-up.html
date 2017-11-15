@@ -33,34 +33,30 @@
         </div>
     </header>
     <main class="container">
-        <hr class="row">
         <div class="row">
-            <p class="col-xs-12 text-center">I'm gonna need to see some id.</p>
-        </div>
-        <div class="row">
-            <form action="post" class="col-xs-12 col-sm-6 col-sm-offset-3">
+            <form action="/signup" method="post" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 form-horizontal">
                 <div class="form-group">
                     <label for="login-email">Email Address</label>
-                    <input type="email" class="form-control" id="login-email" name="email" placeholder="joe.schmoe@email.com" required autofocus>
+                    <input type="email" class="form-control" id="signup-email" name="email" placeholder="joe.schmoe@email.com" required autofocus>
                 </div>
                 <div class="form-group">
                     <label for="login-password">Password</label>
-                    <input type="password" class="form-control" id="login-password" name="password" placeholder="" required>
+                    <input type="password" class="form-control" id="signup-password" name="password" placeholder="" required>
                 </div>
-                <div class="checkbox">
+                <p>I am a...</p>
+                <div class="radio">
                     <label>
-                        <input type="checkbox" id="stay-logged-in" name="stay-logged-in"> Keep me logged in
+                        <input type="radio" name="role" id="role-student" value="student" checked> Student
                     </label>
                 </div>
-                <button class="col-xs-8 col-xs-offset-2 text-center btn btn-primary">Log in</button>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="role" id="role-instructor" value="instructor"> Instructor / TA
+                    </label>
+                </div>
+                <hr>
+                <input type="submit" class="col-xs-8 col-xs-offset-2 text-center btn btn-primary" value="Sign up">
             </form>
-        </div>
-        <div class="row space-row"></div>
-        <div class="row">
-            <p class="col-xs-12 col-sm-2 col-sm-offset-5 text-center">New here?</p>
-        </div>
-        <div class="row">
-            <a href="sign-up.html" class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 text-center btn btn-default">Sign up</a>
         </div>
     </main>
 
