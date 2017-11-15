@@ -1,6 +1,6 @@
 # Project Title
 
-One Paragraph of project description goes here
+This website will allow instructors to manage student web projects and students to rate those projects.
 
 ## Getting Started
 
@@ -72,9 +72,8 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Spenser Mason** - Front-end design - [SFMason](https://github.com/SFMason)
+* **Jacob Kleinsorge** - Back-end development - [JacobKleinsorge](https://github.com/JacobKleinsorge)
 
 ## License
 
