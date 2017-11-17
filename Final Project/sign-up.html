@@ -1,73 +1,100 @@
 <!doctype html>
 <html class="no-js" lang="">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Student Site Rating Site</title>
-    <meta name="description" content="A student project that allows students to rate student projects">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Student Site Rating Site</title>
+        <meta name="description" content="A student project that allows students to rate student projects">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="apple-touch-icon" href="icon.png">
-    <!-- Place favicon.ico in the root directory -->
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
-</head>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
 
-<body>
-    <!--[if lte IE 9]>
+    <body>
+        <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <header class="container">
-        <div class="row">
-            <h1 class="col-xs-12 text-center">Student Site Rating Site</h1>
-            <p class="text-center h3">Welcome to the student project that lets you rate student projects!</p>
-        </div>
-    </header>
-    <main class="container">
-        <div class="row">
-            <form action="/signup" method="post" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 form-horizontal">
-                <div class="form-group">
-                    <label for="login-email">Email Address</label>
-                    <input type="email" class="form-control" id="signup-email" name="email" placeholder="joe.schmoe@email.com" required autofocus>
-                </div>
-                <div class="form-group">
-                    <label for="login-password">Password</label>
-                    <input type="password" class="form-control" id="signup-password" name="password" placeholder="" required>
-                </div>
-                <p>I am a...</p>
-                <div class="radio">
-                    <label>
+        <!-- Add your site or application content here -->
+        <header class="container">
+            <div class="row">
+                <h1 class="col-xs-12 text-center">Student Site Rating Site</h1>
+                <p class="text-center h3">Welcome to the student project that lets you rate student projects!</p>
+            </div>
+        </header>
+        <main class="container">
+            <div class="row">
+                <form id="signup" action="javascript:void(0);" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 form-horizontal">
+                    <div id="username-container" class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" class="form-control" id="signup-email" name="email" placeholder="joe.schmoe@email.com" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" class="form-control" id="signup-password" name="password" placeholder="" required>
+                    </div>
+                    <p>I am a...</p>
+                    <div class="radio">
+                        <label>
                         <input type="radio" name="role" id="role-student" value="student" checked> Student
                     </label>
-                </div>
-                <div class="radio">
-                    <label>
+                    </div>
+                    <div class="radio">
+                        <label>
                         <input type="radio" name="role" id="role-instructor" value="instructor"> Instructor / TA
                     </label>
-                </div>
-                <hr>
-                <input type="submit" class="col-xs-8 col-xs-offset-2 text-center btn btn-primary" value="Sign up">
-            </form>
-        </div>
-    </main>
+                    </div>
+                    <hr>
+                    <input type="submit" class="col-xs-8 col-xs-offset-2 text-center btn btn-primary" value="Sign up">
+                </form>
+            </div>
+        </main>
 
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-</body>
+        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="js/validate-form.js"></script>
+        <script type="text/javascript">
+            "use strict";
+
+            $(function () {
+                const signupForm = {
+                    form: $("#signup"),
+                    username: $("#signup-email"),
+                    password: $("#signup-password"),
+                };
+                const usernameContainer = $("#username-container");
+
+                signupForm.form.submit(function (event) {
+                    const inputs = $("#signup input");
+                    inputs.prop("disabled", true);
+
+                    const email = signupForm.username.val();
+                    const password = signupForm.password.val();
+                    const role = $("input[name=role]:checked").val();
+
+                    validateForm("validate-login", {
+                        newUser: true,
+                        email: email,
+                        password: password,
+                        role: role,
+                    }).done(function (data) {
+                        console.log("Success!", data);
+                    }).fail(function (xhr) {
+                        console.error("Failure!", xhr);
+                    }).always(function () { inputs.prop("disabled", false); });
+                });
+            });
+        </script>
+    </body>
 
 </html>
