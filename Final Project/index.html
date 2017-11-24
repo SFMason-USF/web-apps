@@ -1,36 +1,38 @@
 <!doctype html>
 <html class="no-js" lang="">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Student Site Rating Site</title>
-        <meta name="description" content="A student project that allows students to rate student projects">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Student Site Rating Site</title>
+    <meta name="description" content="A student project that allows students to rate student projects">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="manifest" href="site.webmanifest">
-        <link rel="apple-touch-icon" href="icon.png">
-        <!-- Place favicon.ico in the root directory -->
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/main.css">
-    </head>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+</head>
 
-    <body>
-        <!--[if lte IE 9]>
+<body>
+    <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <header class="container">
-            <div class="row">
-                <h1 class="col-xs-12 text-center">Student Site Rating Site</h1>
-                <p class="text-center h3">Welcome to the student project that lets you rate student projects!</p>
-            </div>
-        </header>
-        <main class="container">
+    <header class="container">
+        <div class="row">
+            <h1 class="col-xs-12 text-center">Student Site Rating Site</h1>
+            <p class="text-center h3">Welcome to the student project that lets you rate student projects!</p>
+        </div>
+    </header>
+    <main class="container">
+        <div id="login-screen">
             <hr class="row">
             <div class="row">
                 <p class="col-xs-12 text-center">I'm gonna need to see some id.</p>
@@ -47,8 +49,8 @@
                     </div>
                     <div class="checkbox">
                         <label>
-                        <input type="checkbox" id="stay-logged-in" name="stay-logged-in"> Keep me logged in
-                    </label>
+                            <input type="checkbox" id="stay-logged-in" name="stay-logged-in"> Keep me logged in
+                        </label>
                     </div>
                     <button class="col-xs-8 col-xs-offset-2 text-center btn btn-primary">Log in</button>
                 </form>
@@ -60,44 +62,77 @@
             <div class="row">
                 <a href="sign-up.html" class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 text-center btn btn-default">Sign up</a>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/validate-form.js"></script>
-        <script src="js/main.js"></script>
-        <script>
-            "use strict";
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')
 
-            $(function () {
-                const loginForm = {
-                    form: $("#login"),
-                    email: $("#login-email"),
-                    password: $("#login-password"),
-                    stayLoggedIn: $("#stay-logged-in")
-                };
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/validate-form.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        "use strict";
 
-                loginForm.form.submit(function (event) {
-                    const inputs = $("#login input");
-                    inputs.prop("disabled", true);
+        $(function () {
+            const URLs = Object.freeze({
+                validateLogin: "validate-login",
+                vote: "vote",
+                votesReport: "vote-report"
+            });
 
-                    validateForm("validate-login", {
-                        newUser: false,
-                        email: loginForm.email.val(),
-                        password: loginForm.password.val()
-                    }).done(function (data) {
-                        console.log("Success!", data)
-                    }).fail(function (xhr) {
-                        console.error("Failure!", xhr);
-                    }).always(function () {
-                        inputs.prop("disabled", false);
-                    });
+            const loginForm = {
+                form: $("#login"),
+                email: $("#login-email"),
+                password: $("#login-password"),
+                stayLoggedIn: $("#stay-logged-in")
+            };
+
+            $("main.container > div").not("#login-screen").hide();
+
+            //login form functionality
+            loginForm.form.submit(function (event) {
+                const inputs = $("#login input");
+                inputs.prop("disabled", true);
+
+                //Expects json data from the server, containing the user's username, their role
+                validateForm(URLs.validateLogin, {
+                    newUser: false,
+                    email: loginForm.email.val(),
+                    password: loginForm.password.val()
+                }).done(function (data) {
+                    $("#login-screen").remove();
+                    const loginResponse = JSON.parse(data.responseText);
+                    if ("role" in loginResponse) {
+                        switch (loginResponse.role) {
+                            case "student":
+                                $("#student-dashboard").show();
+                                break;
+                            case "instructor":
+                                $("#instructor-dashboard").show();
+                                break;
+                            default:
+                                alert("Error: Unknown user role - " + loginResponse.role);
+                                break;
+                        }
+                    }
+                }).fail(function (xhr) {
+                    console.error("Failure!", xhr);
+                }).always(function () {
+                    inputs.prop("disabled", false);
                 });
             });
-        </script>
-    </body>
+
+            //student dashboard functionality
+        });
+
+    </script>
+</body>
 
 </html>
