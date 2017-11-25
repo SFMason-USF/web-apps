@@ -28,7 +28,9 @@
     <header class="container">
         <div class="row">
             <h1 class="col-xs-12 text-center">Student Site Rating Site</h1>
-            <p class="text-center h3">Welcome to the student project that lets you rate student projects!</p>
+        </div>
+        <div class="row">
+            <p class="text-center h3 col-xs-12">Welcome to the student project that lets you rate student projects!</p>
         </div>
     </header>
     <main class="container">
@@ -77,62 +79,6 @@
     <script src="js/plugins.js"></script>
     <script src="js/validate-form.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        "use strict";
-
-        $(function () {
-            const URLs = Object.freeze({
-                validateLogin: "validate-login",
-                vote: "vote",
-                votesReport: "vote-report"
-            });
-
-            const loginForm = {
-                form: $("#login"),
-                email: $("#login-email"),
-                password: $("#login-password"),
-                stayLoggedIn: $("#stay-logged-in")
-            };
-
-            $("main.container > div").not("#login-screen").hide();
-
-            //login form functionality
-            loginForm.form.submit(function (event) {
-                const inputs = $("#login input");
-                inputs.prop("disabled", true);
-
-                //Expects json data from the server, containing the user's username, their role
-                validateForm(URLs.validateLogin, {
-                    newUser: false,
-                    email: loginForm.email.val(),
-                    password: loginForm.password.val()
-                }).done(function (data) {
-                    $("#login-screen").remove();
-                    const loginResponse = JSON.parse(data.responseText);
-                    if ("role" in loginResponse) {
-                        switch (loginResponse.role) {
-                            case "student":
-                                $("#student-dashboard").show();
-                                break;
-                            case "instructor":
-                                $("#instructor-dashboard").show();
-                                break;
-                            default:
-                                alert("Error: Unknown user role - " + loginResponse.role);
-                                break;
-                        }
-                    }
-                }).fail(function (xhr) {
-                    console.error("Failure!", xhr);
-                }).always(function () {
-                    inputs.prop("disabled", false);
-                });
-            });
-
-            //student dashboard functionality
-        });
-
-    </script>
 </body>
 
 </html>
