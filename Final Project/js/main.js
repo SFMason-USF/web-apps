@@ -37,7 +37,7 @@ $(function() {
    *
    * URLs.votesReport:
    *
-   * URLs.sites: expects a response (no input data) in JSON that represents a list of the student sites that have been uploaded to the server in the following form:
+   * URLs.siteList: expects a response (no input data) in JSON that represents a list of the student sites that have been uploaded to the server in the following form:
    * [
    *    {
    *        url: string (the url for the site's iframe),
@@ -49,7 +49,7 @@ $(function() {
     validateLogin: "validate-login",
     vote: "vote",
     votesReport: "vote-report",
-    sites: "site-list"
+    siteList: "site-list"
   });
 
   const loginForm = Object.freeze({
@@ -59,9 +59,10 @@ $(function() {
     stayLoggedIn: $("#stay-logged-in")
   });
 
-  $("main.container > div")
+  /*
+  $("main.container > section")
     .not("#login-screen")
-    .hide();
+    .hide();*/
 
   //login form functionality
   loginForm.form.submit(function(event) {
@@ -116,18 +117,68 @@ $(function() {
   }
 
   const votes = {
-    first: null,
-    second: null,
-    third: null
+    1: null, //gold medal
+    2: null, //silver medal
+    3: null, //bronze medal
+    //Returns the current rating for siteId, or 0 if it's unranked
+    votedOn: function(siteId) {
+      for (let i = 1; i <= 3; ++i) {
+        if (this[i] == siteId) {
+          return i;
+        }
+      }
+      return 0;
+    }
   };
+
+  let currentSite = null;
 
   function studentDashInit() {
     $.ajax({
       dataType: "json",
-      url: URLs.sites
+      url: URLs.siteList
     }).done(function(response) {
+      const galleryContainer = $("#sites-gallery");
       const siteList = JSON.parse(response.responseText);
       shuffle(siteList);
+      siteList.forEach(function(site, index, list) {
+        galleryContainer.append(
+          `<div></div><iframe height="${galleryContainer.css(
+            "height"
+          )}" name="${site.id}" src="${site.url}" width="${galleryContainer.css(
+            "width"
+          )}"></iframe></div>`
+        );
+      });
+      $("$sites-gallery > p.loading").remove();
+      galleryContainer.slick({
+        onAfterChange: function(slide, index) {
+          currentSite = $(slide.$slides.get(index))
+            .find("iframe")
+            .attr("name");
+        }
+      });
+    });
+    $("#rate-first").on("click", function(event) {
+      const currentVote = votes.votedOn(currentSite);
+      if (currentVote) {
+        votes[currentVote] = null;
+      }
+      votes[1] = currentSite;
+    });
+    $("#rate-second").on("click", function(event) {
+      const currentVote = votes.votedOn(currentSite);
+      if (currentVote) {
+        votes[currentVote] = null;
+      }
+      votes[2] = currentSite;
+    });
+    $("#rate-third").on("click", function(event) {
+      const currentVote = votes.votedOn(currentSite);
+      if (currentVote) {
+        votes[currentVote] = null;
+      }
+      votes[3] = currentSite;
     });
   }
 });

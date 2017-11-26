@@ -17,7 +17,13 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/slick.css" />
     <link rel="stylesheet" href="css/main.css">
+    <script>
+        "use strict";
+        const DEBUG = true;
+
+    </script>
 </head>
 
 <body>
@@ -34,7 +40,7 @@
         </div>
     </header>
     <main class="container">
-        <div id="login-screen">
+        <section id="login-screen">
             <hr class="row">
             <div class="row">
                 <p class="col-xs-12 text-center">I'm gonna need to see some id.</p>
@@ -64,7 +70,20 @@
             <div class="row">
                 <a href="sign-up.html" class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 text-center btn btn-default">Sign up</a>
             </div>
-        </div>
+        </section>
+
+        <section id="gallery">
+            <div id="rating-buttons">
+                <p>Rate this site as:</p>
+                <button id="rate-first" class="btn btn-default">Best</button>
+                <button id="rate-second" class="btn btn-default">Second Best</button>
+                <button id="rate-third" class="btn btn-default">Third Best</button>
+            </div>
+            <div id="sites-gallery">
+                <p class="loading">Loading sites...</p>
+            </div>
+            <button id="submit-votes" class="btn btn-primary">Submit Votes</button>
+        </section>
     </main>
 
     <script src="js/vendor/modernizr-3.5.0.min.js"></script>
@@ -77,6 +96,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
     <script src="js/plugins.js"></script>
+    <script type="text/javascript" src="js/slick.min.js"></script>
     <script src="js/validate-form.js"></script>
     <script src="js/main.js"></script>
 </body>
