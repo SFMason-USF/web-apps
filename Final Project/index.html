@@ -38,6 +38,7 @@
         <div class="row">
             <p class="text-center h3 col-xs-12">Welcome to the student project that lets you rate student projects!</p>
         </div>
+        <button id="log-out" class="btn btn-default">Log out</button>
     </header>
     <main class="container">
         <section id="login-screen">
@@ -55,11 +56,6 @@
                         <label for="login-password">Password</label>
                         <input type="password" class="form-control" id="login-password" name="password" placeholder="" required>
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="stay-logged-in" name="stay-logged-in"> Keep me logged in
-                        </label>
-                    </div>
                     <button class="col-xs-8 col-xs-offset-2 text-center btn btn-primary">Log in</button>
                 </form>
             </div>
@@ -72,7 +68,7 @@
             </div>
         </section>
 
-        <section id="gallery">
+        <section id="student-dashboard">
             <div id="rating-buttons">
                 <p>Rate this site as:</p>
                 <button id="rate-first" class="btn btn-default">Best</button>
@@ -83,6 +79,20 @@
                 <p class="loading">Loading sites...</p>
             </div>
             <button id="submit-votes" class="btn btn-primary">Submit Votes</button>
+        </section>
+
+        <section id="instructor-dashboard">
+            <div class="row">
+                <p class="col-sm-6">Upload a CSV of logins:</p>
+                <input id="instructor-upload-logins" class="col-sm-2" type="file" accept=".csv">
+            </div>
+            <div class="row">
+                <p class="col-sm-6">Upload a zip file of student site submissions:</p>
+                <input id="instructor-upload-sites" class="col-sm-2" type="file" accept=".zip">
+            </div>
+            <div class="row">
+                <a id="download-vote-report" class="btn btn-primary" href="get-votes" download="votes.csv">Download voting results</a>
+            </div>
         </section>
     </main>
 

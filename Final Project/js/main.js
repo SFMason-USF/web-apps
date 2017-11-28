@@ -49,20 +49,25 @@ $(function() {
     validateLogin: "validate-login",
     vote: "vote",
     votesReport: "vote-report",
-    siteList: "site-list"
+    siteList: "site-list",
+    uploadLogins: "upload-logins",
+    uploadSites: "upload-sites"
   });
 
   const loginForm = Object.freeze({
     form: $("#login"),
     email: $("#login-email"),
-    password: $("#login-password"),
-    stayLoggedIn: $("#stay-logged-in")
+    password: $("#login-password")
   });
 
-  /*
   $("main.container > section")
     .not("#login-screen")
-    .hide();*/
+    .hide();
+  $("#log-out")
+    .on("click", function() {
+      location.reload();
+    })
+    .hide();
 
   //login form functionality
   loginForm.form.submit(function(event) {
@@ -102,6 +107,7 @@ $(function() {
 
   function onLogIn(loginData) {
     $("#login-screen").remove();
+    $("#log-out").show();
     switch (loginResponse.role) {
       case "student":
         $("#student-dashboard").show();
@@ -158,7 +164,11 @@ $(function() {
             .attr("name");
         }
       });
+      currentSite = $(slide.$slides.get(index))
+        .find("iframe")
+        .attr("name");
     });
+
     $("#rate-first").on("click", function(event) {
       const currentVote = votes.votedOn(currentSite);
       if (currentVote) {
@@ -179,6 +189,40 @@ $(function() {
         votes[currentVote] = null;
       }
       votes[3] = currentSite;
+    });
+
+    $("#submit-votes").on("click", function(event) {
+      $.ajax({
+        url: URLs.vote,
+        method: "POST",
+        data: {
+          gold: votes[1],
+          silver: votes[2],
+          bronze: votes[3]
+        }
+      });
+    });
+  }
+
+  function instructorDashInit() {
+    $("#instructor-dashboard").show();
+    function uploadFile(inputEvent) {
+      const file = inputEvent.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function() {
+        $.ajax({
+          url: URLs.uploadLogins,
+          method: "POST",
+          data: reader.result
+        });
+      };
+      reader.readAsText(file);
+    }
+    $("#instructor-upload-logins").on("change", function(event) {
+      uploadFile(event);
+    });
+    $("#instructor-upload-sites").on("change", function(event) {
+      uploadFile(event);
     });
   }
 });
