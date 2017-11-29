@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
   "use strict";
 
   /**
@@ -35,7 +35,7 @@ $(function() {
    *    third: id
    * }
    *
-   * URLs.votesReport:
+   * URLs.votesReport: expects a json object detailing voting records as csv text
    *
    * URLs.siteList: expects a response (no input data) in JSON that represents a list of the student sites that have been uploaded to the server in the following form:
    * [
@@ -44,6 +44,10 @@ $(function() {
    *        id: unique identifier for this site (used to assign ratings to sites)
    *    }
    * ]
+   *
+   * URLs.uploadLogins: expects nothing with a csv of login accounts as input
+   *
+   * URLs.uploadSites: expects nothing with a zip of projects as input
    */
   const URLs = Object.freeze({
     validateLogin: "validate-login",
@@ -64,43 +68,43 @@ $(function() {
     .not("#login-screen")
     .hide();
   $("#log-out")
-    .on("click", function() {
+    .on("click", function () {
       location.reload();
     })
     .hide();
 
   //login form functionality
-  loginForm.form.submit(function(event) {
+  loginForm.form.submit(function (event) {
     const inputs = $("#login input");
     inputs.prop("disabled", true);
 
     //Expects json data from the server, containing the user's username, their role
     validateForm(URLs.validateLogin, {
-      newUser: false,
-      email: loginForm.email.val(),
-      password: loginForm.password.val()
-    })
-      .done(function(data) {
+        newUser: false,
+        email: loginForm.email.val(),
+        password: loginForm.password.val()
+      })
+      .done(function (data) {
         const loginResponse = JSON.parse(data.responseText);
         switch (false) {
           //if no user found, flag email as wrong
           case loginResponse.validEmail:
             loginForm.email.addClass("has-error");
             break;
-          //else if password wrong, flag
+            //else if password wrong, flag
           case loginResponse.validPassword:
             loginForm.password.addClass("has-error");
             break;
-          //safe to say that login info was good
+            //safe to say that login info was good
           default:
             onLogIn(loginResponse);
             break;
         }
       })
-      .fail(function(xhr) {
+      .fail(function (xhr) {
         console.error("Failure!", xhr);
       })
-      .always(function() {
+      .always(function () {
         inputs.prop("disabled", false);
       });
   });
@@ -127,7 +131,7 @@ $(function() {
     2: null, //silver medal
     3: null, //bronze medal
     //Returns the current rating for siteId, or 0 if it's unranked
-    votedOn: function(siteId) {
+    votedOn: function (siteId) {
       for (let i = 1; i <= 3; ++i) {
         if (this[i] == siteId) {
           return i;
@@ -143,11 +147,11 @@ $(function() {
     $.ajax({
       dataType: "json",
       url: URLs.siteList
-    }).done(function(response) {
+    }).done(function (response) {
       const galleryContainer = $("#sites-gallery");
       const siteList = JSON.parse(response.responseText);
       shuffle(siteList);
-      siteList.forEach(function(site, index, list) {
+      siteList.forEach(function (site, index, list) {
         galleryContainer.append(
           `<div></div><iframe height="${galleryContainer.css(
             "height"
@@ -158,7 +162,7 @@ $(function() {
       });
       $("$sites-gallery > p.loading").remove();
       galleryContainer.slick({
-        onAfterChange: function(slide, index) {
+        onAfterChange: function (slide, index) {
           currentSite = $(slide.$slides.get(index))
             .find("iframe")
             .attr("name");
@@ -169,21 +173,21 @@ $(function() {
         .attr("name");
     });
 
-    $("#rate-first").on("click", function(event) {
+    $("#rate-first").on("click", function (event) {
       const currentVote = votes.votedOn(currentSite);
       if (currentVote) {
         votes[currentVote] = null;
       }
       votes[1] = currentSite;
     });
-    $("#rate-second").on("click", function(event) {
+    $("#rate-second").on("click", function (event) {
       const currentVote = votes.votedOn(currentSite);
       if (currentVote) {
         votes[currentVote] = null;
       }
       votes[2] = currentSite;
     });
-    $("#rate-third").on("click", function(event) {
+    $("#rate-third").on("click", function (event) {
       const currentVote = votes.votedOn(currentSite);
       if (currentVote) {
         votes[currentVote] = null;
@@ -191,7 +195,7 @@ $(function() {
       votes[3] = currentSite;
     });
 
-    $("#submit-votes").on("click", function(event) {
+    $("#submit-votes").on("click", function (event) {
       $.ajax({
         url: URLs.vote,
         method: "POST",
@@ -206,10 +210,11 @@ $(function() {
 
   function instructorDashInit() {
     $("#instructor-dashboard").show();
+
     function uploadFile(inputEvent) {
       const file = inputEvent.target.files[0];
       const reader = new FileReader();
-      reader.onload = function() {
+      reader.onload = function () {
         $.ajax({
           url: URLs.uploadLogins,
           method: "POST",
@@ -218,10 +223,10 @@ $(function() {
       };
       reader.readAsText(file);
     }
-    $("#instructor-upload-logins").on("change", function(event) {
+    $("#instructor-upload-logins").on("change", function (event) {
       uploadFile(event);
     });
-    $("#instructor-upload-sites").on("change", function(event) {
+    $("#instructor-upload-sites").on("change", function (event) {
       uploadFile(event);
     });
   }
