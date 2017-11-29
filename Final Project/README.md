@@ -10,9 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-```
-Give examples
-```
+Python 3
 
 ### Installing
 
@@ -20,15 +18,11 @@ A step by step series of examples that tell you have to get a development env ru
 
 Say what the step will be
 
-```
-Give the example
-```
+Open a command prompt
+Type: pip install flask
+Type: pip install passlib
 
-And repeat
-
-```
-until finished
-```
+Now your environment is fully setup
 
 End with an example of getting some data out of the system or using it for a little demo
 
@@ -54,21 +48,19 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Type on the command prompt: Python app.py
+
+Then go to the localhost and port number that it says on your browser.
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
+* [Bootstrap](http://www.dropwizard.io/1.0.2/docs/) - Front-end component library
+* [Flask](https://maven.apache.org/) - The web framework used
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
