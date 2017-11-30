@@ -17,7 +17,6 @@ $(function () {
   /**
    * URLs.validateLogin: expects a response given the following data:
    * {
-   *    newUser: boolean,
    *    email: string,
    *    password: string
    * }
@@ -80,7 +79,6 @@ $(function () {
 
     //Expects json data from the server, containing the user's username, their role
     validateForm(URLs.validateLogin, {
-        newUser: false,
         email: loginForm.email.val(),
         password: loginForm.password.val()
       })
