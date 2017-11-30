@@ -7,28 +7,25 @@ APP = Flask(__name__)
 def main():
     return render_template('index.html')
 
-# TODO check if needed
-# @APP.route('/')
-# def main():
-#     return render_template('other.html')
 
-@APP.route('/validate-login', methods=['POST'])
+@APP.route('/validate-login', methods=['GET', 'POST'])
 def is_val_login():
     conn = DBAPI.sqlite3.connect("myDB.db")
     curs = conn.cursor()
 
-    email = request.form['email']
-    password = request.form['password']
+    email = request.args.get('email', '', type=str)
+    password = request.args.get('password', '', type=str)
 
     curs.execute('SELECT * FROM USERS WHERE username=?', email)
     data = curs.fetchone()
+
     if data is None:
-        return json.dumps({'validEmail':False, 'validPassword':False, 'role':''})
+        return json.dumps({"validEmail":'false', "validPassword":'false', "role":''})
 
-    if (data[1] != hashlib.sha256(password.encode() + data[2].encode())):
-        return json.dumps({'validEmail':True, 'validPassword':False, 'role':''})
+    if (data[1] != hashlib.sha256(password.encode() + data[2].encode()).hexdigest()):
+        return json.dumps({"validEmail":'true', "validPassword":'false', "role":''})
 
-    return json.dumps({'validEmail':True, 'validPassword':True, 'role':data[3]})
+    return json.dumps({"validEmail":'true', "validPassword":'true', "role":data[3]})
 
 
 @APP.route('/vote', methods=['POST'])
@@ -42,10 +39,10 @@ def vote():
     return 'Notification'
 
 
-@APP.route('/vote-report', methods=['POST'])
+@APP.route('/vote-report', methods=['POST', 'GET'])
 def vote_report():
     # TODO 
-    return
+    return 'Hello'
 
 
 @APP.route('/site-list', methods=['POST'])
