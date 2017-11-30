@@ -1,4 +1,4 @@
-﻿import sqlite3
+import sqlite3
 
 def connect(func):
     def func_wrapper(*args, **kwargs):
@@ -38,16 +38,16 @@ def printTable(conn):
 
 #TODO check and edit function
 @connect
-def addUser(conn, userName, password):
+def addUser(conn, userName, hashresult, salt, role):
     c = conn.cursor()
     t = (userName,)
     c.execute('SELECT * FROM USERS WHERE ID=?', t)
     data = c.fetchone()
     if (data is None):
-        params = (userName, password,0,0,0,0,0)
-        c.execute("INSERT INTO USERS VALUES (?, ?, ?, ?, ?, ?, ?)", params)
-        return True
+        params = (userName, hashresult, salt, role)
+        c.execute("INSERT INTO USERS VALUES (?, ?, ?, ?)", params)
         conn.commit()
+        return True
     else:
         return False
 
@@ -359,5 +359,5 @@ def getScore(conn,user):
 #******************************************************************************
 # Application Main
 #******************************************************************************
-if __name__ == '__main__':
-    Main()
+# if __name__ == '__main__':
+#     Main()
