@@ -1,9 +1,7 @@
-import json
-from flask import Flask, request, render_template
-import DBAPI
+from flask import Flask, request, render_template, json
+import DBAPI, uuid, hashlib
 
 APP = Flask(__name__)
-
 
 @APP.route('/')
 def main():
@@ -14,46 +12,69 @@ def main():
 # def main():
 #     return render_template('other.html')
 
-@APP.route('/sign-up.html')
-def sign_up():
-    return render_template('sign-up.html')
-
 @APP.route('/validate-login', methods=['POST'])
 def is_val_login():
     conn = DBAPI.sqlite3.connect("myDB.db")
-    new_user = request.form['newUser']
+    curs = conn.cursor()
+
     email = request.form['email']
     password = request.form['password']
 
-    if new_user:
-        conf = DBAPI.addUser(conn, email, password)
-        #TODO return confirmation of added user
-        return 'Confirmation'
-    else:
-        # TODO Check if valid email and pw
+    curs.execute('SELECT * FROM USERS WHERE username=?', email)
+    data = curs.fetchone()
+    if data is None:
+        return json.dumps({'validEmail':False, 'validPassword':False, 'role':''})
 
-        # TODO Get role
-        role = 'role'
-        return json.dumps({'validEmail':True, 'validPassword':True, 'role':role})
+    if (data[1] != hashlib.sha256(password.encode() + data[2].encode())):
+        return json.dumps({'validEmail':True, 'validPassword':False, 'role':''})
+
+    return json.dumps({'validEmail':True, 'validPassword':True, 'role':data[3]})
+
 
 @APP.route('/vote', methods=['POST'])
 def vote():
     conn = DBAPI.sqlite3.connect("myDB.db")
-    first_vote = request.form['first']
-    second_vote = request.form['second']
-    third_vote = request.form['third']
+    gold = request.form['first']
+    silver = request.form['second']
+    bronze = request.form['third']
 
     # TODO Return notification of successful vote
     return 'Notification'
 
+
 @APP.route('/vote-report', methods=['POST'])
 def vote_report():
-    #TODO 
+    # TODO 
     return
+
 
 @APP.route('/site-list', methods=['POST'])
 def site_list():
+    # TODO
     return
 
+
+@APP.route('/upload-logins', methods=['POST'])
+def upload_logins():
+    # TODO 
+    return
+
+
+@APP.route('/upload-sites', methods=['POST'])
+def upload_sites():
+    # TODO 
+    return
+
+
 if __name__ == "__main__":
+    conn = DBAPI.sqlite3.connect("myDB.db")
+    conn.execute('''CREATE TABLE USERS
+           (username text, hashresult text, salt text, role text)''')
+    salt = uuid.uuid4().hex
+    hashresult = hashlib.sha256('admin'.encode() + salt.encode()).hexdigest()
+    DBAPI.addUser(conn, 'admin', hashresult, salt, 'instructor')
+
+# conn.execute('''CREATE TABLE STUDENTS
+# (username text, siteid text, gold text, silver text, bronze text)''')
+    conn.commit()
     APP.run()
