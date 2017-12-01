@@ -77,25 +77,26 @@ $(function () {
     const inputs = $("#login input");
     inputs.prop("disabled", true);
 
+    
     //Expects json data from the server, containing the user's username, their role
     validateForm(URLs.validateLogin, {
         email: loginForm.email.val(),
         password: loginForm.password.val()
       })
-      .done(function (data) {
-        const loginResponse = JSON.parse(data.responseText);
+      .done(function (callback) {
+        // const loginResponse = callback;
         switch (false) {
           //if no user found, flag email as wrong
-          case loginResponse.validEmail:
+          case callback.validEmail:
             loginForm.email.addClass("has-error");
             break;
             //else if password wrong, flag
-          case loginResponse.validPassword:
+          case callback.validPassword:
             loginForm.password.addClass("has-error");
             break;
             //safe to say that login info was good
           default:
-            onLogIn(loginResponse);
+            onLogIn(callback);
             break;
         }
       })
