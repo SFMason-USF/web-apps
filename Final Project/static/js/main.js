@@ -153,7 +153,7 @@ $(function() {
       shuffle(siteList);
       siteList.forEach(function(site, index, list) {
         galleryContainer.append(
-          `<div><iframe height="${galleryContainer.css("height")}" name="${site.id}" src="templates/${
+          `<div><iframe height="600" name="${site.id}" src="templates/${
             site.url
           }" width="${galleryContainer.css("width")}"></iframe></div>`
         );
