@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Benford Distribution</title>
+</head>
+
+<body>
+    <h1>Benford</h1>
+    <select name="sample" id="sample-select">
+        <option value="sample1">Sample 1</option>
+        <option value="sample2">Sample 2</option>
+        <option value="livejournal">Live Journal</option>
+        <option value="librarybooks">Library Books</option>
+        <option value="sunspots">Sunspots</option>
+    </select>
+    <div id="graph"></div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="higher-hw.js"></script>
+    <script>
+        const sampleSelect = document.getElementById("sample-select");
+        sampleSelect.disabled = true;
+
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        const graphOptions = {
+            title: "",
+            width: 600,
+            height: 400,
+        };
+        google.charts.setOnLoadCallback(function () {
+            const samples = Object.freeze({
+                sample1: sample1,
+                sample2: sample2,
+                livejournal: livejournal,
+                librarybooks: librarybooks,
+                sunspots: sunspots
+            });
+
+            const options = {};
+            window.options = options;
+            for (let option of sampleSelect.getElementsByTagName("option")) {
+                let value = option.value;
+                options[value] = {};
+                options[value].name = option.innerText;
+                options[value].frequencies = toPercentages(benford(samples[option.value]));
+                options[value].dataTable = new google.visualization.DataTable();
+                let table = options[value].dataTable;
+                table.addColumn("string", "Digit");
+                table.addColumn("number", "Frequency");
+                //expand the map into a 2d array[][2], sort it, then convert the digits to strings
+                table.addRows([...options[value].frequencies].sort((a, b) => +a[0] - +b[0]).map(v => ["" + v[0], v[1]]));
+            }
+
+            sampleSelect.onchange = function () {
+                //{frequencies: Map<int, int>, dataTable: google.visualization.DataTable}
+                const option = options[sampleSelect.selectedOptions[0].value];
+                graphOptions.title = option.name;
+                new google.visualization.BarChart(document.getElementById("graph")).draw(options[sampleSelect.selectedOptions[0].value].dataTable, graphOptions);
+            };
+            sampleSelect.disabled = false;
+            sampleSelect.onchange();
+        });
+
+        function toPercentages(benfordMap) {
+            const arr = [...benfordMap]; //convert to an array to be able to use reduce()
+            const total = arr.reduce((acc, v) => acc + v[1], 0); //find the total number of items in the sample
+            //build a Map of sample point -> sample frequency / total samples
+            return arr.reduce((acc, v) => {
+                return acc.set(v[0], v[1] / total);
+            }, new Map([[1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0]]));
+        }
+    </script>
+</body>
+
+</html>
