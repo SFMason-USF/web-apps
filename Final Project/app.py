@@ -1,5 +1,5 @@
 import DBAPI, uuid, hashlib, csv, os, zipfile
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, send_from_directory
 
 
 conn = DBAPI.sqlite3.connect("myDB.db")
@@ -11,6 +11,17 @@ app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path)
 @app.route('/')
 def main():
     return render_template('index.html')
+
+@app.route('/templates/<name>', methods=['POST', 'GET'])
+def sites(name):
+    c = conn.cursor()
+    t = (name,)
+    c.execute('SELECT * FROM SITES WHERE siteid=?', t)
+    data = c.fetchone()
+    if (data is None): 
+        return 'Error'
+    else:
+        return send_from_directory('templates/' + name, 'index.html')
 
 
 @app.route('/validate-login', methods=['POST'])
@@ -109,7 +120,7 @@ def upload_sites():
             if name[-4:] == 'html':
                 ind = name.index("/")
                 student = name[:ind]
-                DBAPI.addSite(conn, student, os.path.join(app.root_path + '/templates/' + student))
+                DBAPI.addSite(conn, student, student)
 
     return render_template('index.html')
 
