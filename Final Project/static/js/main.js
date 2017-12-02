@@ -153,9 +153,9 @@ $(function() {
       shuffle(siteList);
       siteList.forEach(function(site, index, list) {
         galleryContainer.append(
-          `<div><iframe height="${galleryContainer.css("height")}" name="${site.id}" src="sites/${
+          `<div><iframe height="${galleryContainer.css("height")}" name="${site.id}" src="templates/${
             site.url
-          }/index.html" width="${galleryContainer.css("width")}"></iframe></div>`
+          }" width="${galleryContainer.css("width")}"></iframe></div>`
         );
       });
       $("#sites-gallery > p.loading").remove();
