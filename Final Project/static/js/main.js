@@ -111,7 +111,7 @@ $(function () {
   function onLogIn(loginData) {
     $("#login-screen").remove();
     $("#log-out").show();
-    switch (loginResponse.role) {
+    switch (loginData.role) {
       case "student":
         $("#student-dashboard").show();
         studentDashInit();
@@ -120,7 +120,7 @@ $(function () {
         $("#instructor-dashboard").show();
         break;
       default:
-        alert("Error: Unknown user role - " + loginResponse.role);
+        alert("Error: Unknown user role - " + loginData.role);
         break;
     }
   }
@@ -148,18 +148,19 @@ $(function () {
       url: URLs.siteList
     }).done(function (response) {
       const galleryContainer = $("#sites-gallery");
-      const siteList = JSON.parse(response.responseText);
+      var siteList = response;
       shuffle(siteList);
       siteList.forEach(function (site, index, list) {
+        console.log(site.url);
         galleryContainer.append(
-          `<div></div><iframe height="${galleryContainer.css(
+          `<div><iframe height="${galleryContainer.css(
             "height"
-          )}" name="${site.id}" src="${site.url}" width="${galleryContainer.css(
+          )}" name="${site.id}" src="file:///${site.url}/index.html" width="${galleryContainer.css(
             "width"
           )}"></iframe></div>`
         );
       });
-      $("$sites-gallery > p.loading").remove();
+      $("#sites-gallery > p.loading").remove();
       galleryContainer.slick({
         onAfterChange: function (slide, index) {
           currentSite = $(slide.$slides.get(index))
@@ -210,23 +211,33 @@ $(function () {
   function instructorDashInit() {
     $("#instructor-dashboard").show();
 
-    function uploadFile(inputEvent) {
-      const file = inputEvent.target.files[0];
-      const reader = new FileReader();
-      reader.onload = function () {
-        $.ajax({
-          url: URLs.uploadLogins,
-          method: "POST",
-          data: reader.result
-        });
-      };
-      reader.readAsText(file);
-    }
-    $("#instructor-upload-logins").on("change", function (event) {
-      uploadFile(event);
-    });
-    $("#instructor-upload-sites").on("change", function (event) {
-      uploadFile(event);
-    });
+    // function uploadFile(inputEvent) {
+    //   const file = inputEvent.target.files[0];
+    //   const reader = new FileReader();
+    //   reader.onload = function () {
+    //     $.ajax({
+    //       url: URLs.uploadLogins,
+    //       method: "POST",
+    //       data: f
+    //     });
+    //   };
+    //   reader.readAsText(file);
+    //   var f = reader.result;
+    // }
+    // $("#instructor-upload-logins").on("change", function (event) {
+    //   var form = $('upload')[1];
+    //   var fd = new FormData(form);
+
+    //   $.ajax({
+    //     type : 'POST',
+    //     url : URLs.uploadLogins,
+    //     data: fd,
+    //     processData : false,
+    //     contentType : false
+    //   })
+    // });
+    // $("#instructor-upload-sites").on("change", function (event) {
+    //   uploadFile(event);
+    // });
   }
 });
