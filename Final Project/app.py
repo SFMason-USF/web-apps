@@ -1,5 +1,5 @@
 import DBAPI, uuid, hashlib, csv, os, zipfile
-from flask import Flask, request, render_template, jsonify, send_from_directory
+from flask import Flask, request, render_template, jsonify, send_from_directory, send_file
 
 
 conn = DBAPI.sqlite3.connect("myDB.db")
@@ -53,15 +53,23 @@ def vote():
     user = currentUser
 
     DBAPI.addVote(conn, user, first, second, third)
-    
-    # TODO Return notification of successful vote
-    return 'Notification'
 
 
-@app.route('/vote-report', methods=['POST', 'GET'])
+@app.route('/get-votes', methods=['POST', 'GET'])
 def vote_report():
-    # TODO Return votereport
-    return 'Hello'
+
+    
+
+    with open('vote-report.csv', 'wb') as f:
+        cur = conn.cursor()
+        for row in cur.execute('SELECT * FROM VOTEREPORT'):
+            writeRow = " ".join([str(i) for i in row])
+            f.write(writeRow.encode())
+
+    return send_file('vote-report.csv',
+                     mimetype='text/csv',
+                     attachment_filename='vote-report.csv',
+                     as_attachment=True)
 
 
 @app.route('/site-list', methods=['POST', 'GET'])
