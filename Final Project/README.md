@@ -31,7 +31,7 @@ To view this app in a browser on the machine it is running, go to the url http:/
 
 * [jQuery](http://jquery.com/) - Front-end JavaScript library
 * [Bootstrap](https://getbootstrap.com/) - Front-end style library
-* [Flask](http://flask.pocoo.org/) - The web framework used
+* [Flask](http://flask.pocoo.org/) - Back-end server client library
 
 ## Authors
 
