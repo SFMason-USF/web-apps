@@ -75,14 +75,16 @@
         </section>
 
         <section id="instructor-dashboard">
-            <div class="row">
+            <form class="row" action = "http://localhost:5000/upload-logins" method = "POST" enctype="multipart/form-data">
                 <p class="col-sm-6">Upload a CSV of logins:</p>
-                <input id="instructor-upload-logins" class="col-sm-2" type="file" accept=".csv">
-            </div>
-            <div class="row">
+                <input name = "file" type="file" accept=".csv" />
+                <input type = "submit"/>
+            </form>
+            <form class="row" action = "http://localhost:5000/upload-sites" method = "POST" enctype="multipart/form-data">
                 <p class="col-sm-6">Upload a zip file of student site submissions:</p>
-                <input id="instructor-upload-sites" class="col-sm-2" type="file" accept=".zip">
-            </div>
+                <input name="file" class="col-sm-2" type="file" accept=".zip">
+                <input type = "submit"/>
+            </form>
             <div class="row">
                 <a id="download-vote-report" class="btn btn-primary" href="get-votes" download="votes.csv">Download voting results</a>
             </div>
