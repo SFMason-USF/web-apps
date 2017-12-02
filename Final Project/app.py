@@ -1,84 +1,130 @@
+import DBAPI, uuid, hashlib, csv, os, zipfile
 from flask import Flask, request, render_template, jsonify
-import DBAPI, uuid, hashlib
 
-APP = Flask(__name__)
 
-@APP.route('/')
+conn = DBAPI.sqlite3.connect("myDB.db")
+
+app = Flask(__name__)
+currentUser = ''
+app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path)
+
+@app.route('/')
 def main():
     return render_template('index.html')
 
 
-@APP.route('/validate-login', methods=['POST'])
+@app.route('/validate-login', methods=['POST'])
 def is_val_login():
-    conn = DBAPI.sqlite3.connect("myDB.db")
     curs = conn.cursor()
 
     email = request.form['email']
     password = request.form['password']
-    print(email)
-    print(password)
-
 
     curs.execute('SELECT * FROM USERS WHERE username=?', (email,))
     data = curs.fetchone()
-
+    
     if data is None:
         return jsonify({'validEmail' : False, 'validPassword' : False, 'role' : ''})
 
     if (data[1] != hashlib.sha256(password.encode() + data[2].encode()).hexdigest()):
         return jsonify({'validEmail' : True, 'validPassword' : False, 'role' : ''})
-
+    
+    currentUser = email
     return jsonify({'validEmail' : True, 'validPassword' : True, 'role' : data[3]})
 
 
-@APP.route('/vote', methods=['POST'])
+@app.route('/vote', methods=['POST'])
 def vote():
-    conn = DBAPI.sqlite3.connect("myDB.db")
-    gold = request.form['first']
-    silver = request.form['second']
-    bronze = request.form['third']
+    first = request.form['gold']
+    second = request.form['silver']
+    third = request.form['bronze']
 
+    user = currentUser
+
+    DBAPI.addVote(conn, user, first, second, third)
+    
     # TODO Return notification of successful vote
     return 'Notification'
 
 
-@APP.route('/vote-report', methods=['POST', 'GET'])
+@app.route('/vote-report', methods=['POST', 'GET'])
 def vote_report():
-    # TODO 
+    # TODO Return votereport
     return 'Hello'
 
 
-@APP.route('/site-list', methods=['POST'])
+@app.route('/site-list', methods=['POST', 'GET'])
 def site_list():
-    # TODO
-    return
+
+    cur = conn.cursor()
+
+    cur.execute('SELECT * FROM SITES')
+    tablen = cur.fetchall()
+    newtable = []
+
+    for row in tablen:
+        mydict = {}
+        mydict['id'] = row[0]
+        mydict['url'] = row[1]
+        newtable.append(mydict)
+
+    return jsonify(newtable)
 
 
-@APP.route('/upload-logins', methods=['POST'])
+@app.route('/upload-logins', methods=['POST'])
 def upload_logins():
-    # TODO 
-    return
+    f = request.files['file']
+
+    cur = conn.cursor()
+
+    filename = f.filename
+
+    f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
 
-@APP.route('/upload-sites', methods=['POST'])
+    with open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'r') as ft:
+        dr = csv.DictReader(ft)
+        salt = uuid.uuid4().hex
+        to_db = [(i['username'], (hashlib.sha256((i['password']).encode() + salt.encode()).hexdigest()), salt, i['role']) for i in dr]
+
+    cur.executemany("INSERT INTO USERS (username, hashresult, salt, role) VALUES (?, ?, ?, ?);", to_db)
+    conn.commit()
+
+    return render_template('index.html')
+
+
+@app.route('/upload-sites', methods=['POST'])
 def upload_sites():
-    # TODO 
-    return
+    f = request.files['file']
+
+    cur = conn.cursor()
+
+    filename = f.filename
+    f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    with zipfile.ZipFile(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'r') as ft:
+        names = ft.namelist()
+        ft.extractall(os.path.join(app.root_path + '/templates'))
+        for name in names:
+            if name[-4:] == 'html':
+                ind = name.index("/")
+                student = name[:ind]
+                DBAPI.addSite(conn, student, os.path.join(app.root_path + '/templates/' + student))
+
+    return render_template('index.html')
 
 
 if __name__ == "__main__":
-    conn = DBAPI.sqlite3.connect("myDB.db")
-    # conn.execute('''CREATE TABLE USERS
-    #        (username text, hashresult text, salt text, role text)''')
+
+    DBAPI.createUsers(conn)
+    DBAPI.createVoteReport(conn)
+    DBAPI.createSites(conn)
+
     salt = uuid.uuid4().hex
     hashresult = hashlib.sha256('admin'.encode() + salt.encode()).hexdigest()
-    
     username = 'admin'
     role = 'instructor'
-    conn.commit()
     DBAPI.addUser(conn, username, hashresult, salt, role)
-
-# conn.execute('''CREATE TABLE STUDENTS
-# (username text, siteid text, gold text, silver text, bronze text)''')
     conn.commit()
-    APP.run()
+
+    app.run()
