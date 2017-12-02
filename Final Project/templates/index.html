@@ -1,109 +1,105 @@
 <!doctype html>
 <html class="no-js" lang="">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Student Site Rating Site</title>
-    <meta name="description" content="A student project that allows students to rate student projects">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Student Site Rating Site</title>
+        <meta name="description" content="A student project that allows students to rate student projects">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
-    <link rel="apple-touch-icon" href="{{ url_for('static', filename='icon.png') }}">
-    <link rel="icon" href="{{ url_for('static', filename='faveicon.ico') }}">
+        <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+        <link rel="apple-touch-icon" href="{{ url_for('static', filename='icon.png') }}">
+        <link rel="icon" href="{{ url_for('static', filename='faveicon.ico') }}">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-        crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/slick.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <script>
-        "use strict";
-        const DEBUG = true;
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/slick.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <script>
+            "use strict";
+            const DEBUG = true;
 
-    </script>
-</head>
+        </script>
+    </head>
 
-<body>
-    <!--[if lte IE 9]>
+    <body>
+        <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-    <header class="container">
-        <div class="row">
-            <h1 class="col-xs-12 text-center">Student Site Rating Site</h1>
-        </div>
-        <div class="row">
-            <p class="text-center h3 col-xs-12">Welcome to the student project that lets you rate student projects!</p>
-        </div>
-        <button id="log-out" class="btn btn-default">Log out</button>
-    </header>
-    <main class="container">
-        <section id="login-screen">
-            <hr class="row">
+        <header class="container">
             <div class="row">
-                <p class="col-xs-12 text-center">I'm gonna need to see some id.</p>
+                <h1 class="col-xs-12 text-center">Student Site Rating Site</h1>
             </div>
             <div class="row">
-                <form id="login" action="javascript:void(0);" class="col-xs-12 col-sm-6 col-sm-offset-3">
-                    <div class="form-group">
-                        <label for="login-email">Username</label>
-                        <input type="text" class="form-control" id="login-email" name="email" placeholder="joe.schmoe@email.com" required autofocus>
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" class="form-control" id="login-password" name="password" placeholder="" required>
-                    </div>
-                    <button class="col-xs-8 col-xs-offset-2 text-center btn btn-primary">Log in</button>
+                <p class="text-center h3 col-xs-12">Welcome to the student project that lets you rate student projects!</p>
+            </div>
+            <button id="log-out" class="btn btn-default">Log out</button>
+        </header>
+        <main class="container">
+            <section id="login-screen">
+                <hr class="row">
+                <div class="row">
+                    <p class="col-xs-12 text-center">I'm gonna need to see some id.</p>
+                </div>
+                <div class="row">
+                    <form id="login" action="javascript:void(0);" class="col-xs-12 col-sm-6 col-sm-offset-3">
+                        <div class="form-group">
+                            <label for="login-email">Username</label>
+                            <input type="text" class="form-control" id="login-email" name="email" placeholder="Username" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" class="form-control" id="login-password" name="password" placeholder="" required>
+                        </div>
+                        <button class="col-xs-8 col-xs-offset-2 text-center btn btn-primary">Log in</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="student-dashboard">
+                <div id="rating-buttons">
+                    <p>Rate this site as:</p>
+                    <button id="rate-first" class="btn btn-default">Best</button>
+                    <button id="rate-second" class="btn btn-default">Second Best</button>
+                    <button id="rate-third" class="btn btn-default">Third Best</button>
+                </div>
+                <div id="sites-gallery">
+                    <p class="loading">Loading sites...</p>
+                </div>
+                <button id="submit-votes" class="btn btn-primary">Submit Votes</button>
+            </section>
+
+            <section id="instructor-dashboard">
+                <form class="row" action="http://localhost:5000/upload-logins" method="POST" enctype="multipart/form-data">
+                    <p class="col-sm-6">Upload a CSV of logins:</p>
+                    <input class="col-sm-3" name="file" type="file" accept=".csv" />
+                    <input class="col-sm-3" type="submit" />
                 </form>
-            </div>
-        </section>
+                <form class="row" action="http://localhost:5000/upload-sites" method="POST" enctype="multipart/form-data">
+                    <p class="col-sm-6">Upload a zip file of student site submissions:</p>
+                    <input class="col-sm-3" name="file" class="col-sm-2" type="file" accept=".zip">
+                    <input class="col-sm-3" type="submit" />
+                </form>
+                <div class="row">
+                    <a id="download-vote-report" class="btn btn-primary col-sm-3" href="get-votes" download="votes.csv">Download voting results</a>
+                </div>
+            </section>
+        </main>
 
-        <section id="student-dashboard">
-            <div id="rating-buttons">
-                <p>Rate this site as:</p>
-                <button id="rate-first" class="btn btn-default">Best</button>
-                <button id="rate-second" class="btn btn-default">Second Best</button>
-                <button id="rate-third" class="btn btn-default">Third Best</button>
-            </div>
-            <div id="sites-gallery">
-                <p class="loading">Loading sites...</p>
-            </div>
-            <button id="submit-votes" class="btn btn-primary">Submit Votes</button>
-        </section>
+        <script src="{{ url_for('static', filename = 'js/vendor/modernizr-3.5.0.min.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>
+            window.jQuery || document.write('<script src="{{ url_for("static", filename = "js/vendor/jquery-3.2.1.min.js") }}"><\/script>')
 
-        <section id="instructor-dashboard">
-            <form class="row" action = "http://localhost:5000/upload-logins" method = "POST" enctype="multipart/form-data">
-                <p class="col-sm-6">Upload a CSV of logins:</p>
-                <input name = "file" type="file" accept=".csv" />
-                <input type = "submit"/>
-            </form>
-            <form class="row" action = "http://localhost:5000/upload-sites" method = "POST" enctype="multipart/form-data">
-                <p class="col-sm-6">Upload a zip file of student site submissions:</p>
-                <input name="file" class="col-sm-2" type="file" accept=".zip">
-                <input type = "submit"/>
-            </form>
-            <div class="row">
-                <a id="download-vote-report" class="btn btn-primary" href="get-votes" download="votes.csv">Download voting results</a>
-            </div>
-        </section>
-    </main>
-
-    <script src="{{ url_for('static', filename = 'js/vendor/modernizr-3.5.0.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-    <script>
-        window.jQuery || document.write('<script src="{{ url_for("static", filename = "js/vendor/jquery-3.2.1.min.js") }}"><\/script>')
-
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename = 'js/plugins.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename = 'js/slick.min.js') }}"></script>
-    <script src="{{ url_for('static', filename = 'js/validate-form.js') }}"></script>
-    <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
-</body>
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename = 'js/plugins.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/slick.min.js') }}"></script>
+        <script src="{{ url_for('static', filename = 'js/validate-form.js') }}"></script>
+        <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+    </body>
 
 </html>

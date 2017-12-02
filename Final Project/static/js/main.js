@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
   "use strict";
 
   /**
@@ -67,43 +67,43 @@ $(function () {
     .not("#login-screen")
     .hide();
   $("#log-out")
-    .on("click", function () {
+    .on("click", function() {
       location.reload();
     })
     .hide();
 
   //login form functionality
-  loginForm.form.submit(function (event) {
+  loginForm.form.submit(function(event) {
     const inputs = $("#login input");
     inputs.prop("disabled", true);
 
-    
     //Expects json data from the server, containing the user's username, their role
     validateForm(URLs.validateLogin, {
-        email: loginForm.email.val(),
-        password: loginForm.password.val()
-      })
-      .done(function (callback) {
+      email: loginForm.email.val(),
+      password: loginForm.password.val()
+    })
+      .done(function(callback) {
+        console.log("Callback:", callback);
         // const loginResponse = callback;
         switch (false) {
           //if no user found, flag email as wrong
           case callback.validEmail:
             loginForm.email.addClass("has-error");
             break;
-            //else if password wrong, flag
+          //else if password wrong, flag
           case callback.validPassword:
             loginForm.password.addClass("has-error");
             break;
-            //safe to say that login info was good
+          //safe to say that login info was good
           default:
             onLogIn(callback);
             break;
         }
       })
-      .fail(function (xhr) {
+      .fail(function(xhr) {
         console.error("Failure!", xhr);
       })
-      .always(function () {
+      .always(function() {
         inputs.prop("disabled", false);
       });
   });
@@ -130,7 +130,7 @@ $(function () {
     2: null, //silver medal
     3: null, //bronze medal
     //Returns the current rating for siteId, or 0 if it's unranked
-    votedOn: function (siteId) {
+    votedOn: function(siteId) {
       for (let i = 1; i <= 3; ++i) {
         if (this[i] == siteId) {
           return i;
@@ -146,48 +146,43 @@ $(function () {
     $.ajax({
       dataType: "json",
       url: URLs.siteList
-    }).done(function (response) {
+    }).done(function(response) {
       const galleryContainer = $("#sites-gallery");
+      console.log("response:", response);
       var siteList = response;
       shuffle(siteList);
-      siteList.forEach(function (site, index, list) {
-        console.log(site.url);
+      siteList.forEach(function(site, index, list) {
         galleryContainer.append(
-          `<div><iframe height="${galleryContainer.css(
-            "height"
-          )}" name="${site.id}" src="file:///${site.url}/index.html" width="${galleryContainer.css(
-            "width"
-          )}"></iframe></div>`
+          `<div><iframe height="${galleryContainer.css("height")}" name="${site.id}" src="file:///${
+            site.url
+          }/index.html" width="${galleryContainer.css("width")}"></iframe></div>`
         );
       });
       $("#sites-gallery > p.loading").remove();
       galleryContainer.slick({
-        onAfterChange: function (slide, index) {
+        onAfterChange: function(slide, index) {
           currentSite = $(slide.$slides.get(index))
             .find("iframe")
             .attr("name");
         }
       });
-      currentSite = $(slide.$slides.get(index))
-        .find("iframe")
-        .attr("name");
     });
 
-    $("#rate-first").on("click", function (event) {
+    $("#rate-first").on("click", function(event) {
       const currentVote = votes.votedOn(currentSite);
       if (currentVote) {
         votes[currentVote] = null;
       }
       votes[1] = currentSite;
     });
-    $("#rate-second").on("click", function (event) {
+    $("#rate-second").on("click", function(event) {
       const currentVote = votes.votedOn(currentSite);
       if (currentVote) {
         votes[currentVote] = null;
       }
       votes[2] = currentSite;
     });
-    $("#rate-third").on("click", function (event) {
+    $("#rate-third").on("click", function(event) {
       const currentVote = votes.votedOn(currentSite);
       if (currentVote) {
         votes[currentVote] = null;
@@ -195,7 +190,7 @@ $(function () {
       votes[3] = currentSite;
     });
 
-    $("#submit-votes").on("click", function (event) {
+    $("#submit-votes").on("click", function(event) {
       $.ajax({
         url: URLs.vote,
         method: "POST",
