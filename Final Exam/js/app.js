@@ -2,6 +2,14 @@ const startYear = 1900;
 const endYear = 2000;
 const censusInterval = 10;
 
+String.prototype.strip = function(characters) {
+  let str = this;
+  for (let i = 0; i < characters.length; ++i) {
+    str = str.replace(new RegExp(`^[${characters}]+|[${characters}]+$`), "");
+  }
+  return str;
+};
+
 $(function() {
   "use strict";
 
@@ -26,11 +34,12 @@ $(function() {
       $.ajax({
         url: DEBUG ? "sample-data.json" : "names",
         method: "GET",
-        data: event.target.value,
+        data: event.target.value.strip(", ").split(/, */),
         dataType: "json"
       }).done(function(rawData) {
-        if (rawData == "Name not found") {
+        if (rawData == "No entered names found") {
           $("#name-not-found")
+            .text("No entered names found")
             .parent()
             .show();
           $("#search").addClass("has-error");
@@ -66,13 +75,13 @@ $(function() {
   });
 });
 
-function randomData(name) {
-  function randomRank() {
-    return Math.floor(Math.random() * 1000);
-  }
-  const years = [];
-  for (let i = startYear; i <= endYear; i += censusInterval) {
-    years.push(randomRank());
-  }
-  return `["${name}", ${years.join(", ")}]`;
-}
+// function randomData(name) {
+//   function randomRank() {
+//     return Math.floor(Math.random() * 1000);
+//   }
+//   const years = [];
+//   for (let i = startYear; i <= endYear; i += censusInterval) {
+//     years.push(randomRank());
+//   }
+//   return `["${name}", ${years.join(", ")}]`;
+// }
