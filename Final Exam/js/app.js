@@ -34,7 +34,7 @@ $(function() {
       $.ajax({
         url: DEBUG ? "sample-data.json" : "names",
         method: "GET",
-        data: event.target.value.strip(", ").split(/, */),
+        data: event.target.value,
         dataType: "json"
       }).done(function(rawData) {
         if (rawData == "No entered names found") {
@@ -59,6 +59,23 @@ $(function() {
         //  ...
         //  ["2000", name0 rating for 2000, name1 rating for 2000, etc.]
         //]
+        //TODO: Change input data to format:
+        // {
+        //   name: "name",
+        //   ratings: [
+        //     rating,
+        //     rating,
+        //     rating,
+        //     rating,
+        //     rating,
+        //     rating,
+        //     rating,
+        //     rating,
+        //     rating,
+        //     rating,
+        //     rating
+        //   ]
+        // }
         const formattedData = [["Year"]];
         for (let i = startYear; i <= endYear; i += censusInterval) {
           formattedData.push([i]);
