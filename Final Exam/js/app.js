@@ -25,7 +25,7 @@ $(function() {
       },
       height: 400,
       title: "Name Rankings",
-      vAxis: { title: "Rank" },
+      vAxis: { title: "Rank", direction: -1 },
       width: 600
     };
     const chart = new google.visualization.LineChart($("#graph")[0]);
@@ -66,7 +66,7 @@ $(function() {
         rawData.forEach(function(name, index, array) {
           formattedData[0].push("" + name[0]);
           for (let i = 1; i < name.length; ++i) {
-            formattedData[i].push(name[i] == 0 ? 1001 : name[i]);
+            formattedData[i].push(name[i] || 1001);
           }
         });
         chart.draw(google.visualization.arrayToDataTable(formattedData), options);
