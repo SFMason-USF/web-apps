@@ -29,6 +29,10 @@ $(function() {
       width: 600
     };
     const chart = new google.visualization.LineChart($("#graph")[0]);
+    const chartData = [["Year"]];
+    for (let i = startYear; i <= endYear; i += censusInterval) {
+      chartData.push([i]);
+    }
 
     $("#search").on("change", function(event) {
       $.ajax({
@@ -76,17 +80,12 @@ $(function() {
         //     rating
         //   ]
         // }
-        const formattedData = [["Year"]];
-        for (let i = startYear; i <= endYear; i += censusInterval) {
-          formattedData.push([i]);
+        console.log("rawData:", rawData);
+        chartData[0].push(rawData.name);
+        for (let i = 1; i < chartData.length; ++i) {
+          chartData[i].push(rawData.ratings[i - 1]);
         }
-        rawData.forEach(function(name, index, array) {
-          formattedData[0].push("" + name[0]);
-          for (let i = 1; i < name.length; ++i) {
-            formattedData[i].push(name[i] || 1001);
-          }
-        });
-        chart.draw(google.visualization.arrayToDataTable(formattedData), options);
+        chart.draw(google.visualization.arrayToDataTable(chartData), options);
       });
     });
   });
