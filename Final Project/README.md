@@ -42,8 +42,14 @@ necessary student accounts.
 
 ## Administration
 
-The logins csv upload is expecting data in the following format: username,password,role
-myusername,mypassword,myrole myusername2,mypassword2,myrole2 etc.
+The logins csv upload is expecting data in the following format: '''
+username,password,role
+myusername,mypassword,myrole 
+myusername2,mypassword2,myrole2 
+etc.
+'''
+Note: The logins csv must have the first row as described.
+
 
 The sites zip upload is expecting a zip file in the following format:
 
