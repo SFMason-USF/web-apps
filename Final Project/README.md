@@ -40,6 +40,21 @@ From there, you can access the instructor dashboard, and most importantly, uploa
 containing login information. This way you can establish your own instructor account, as well as the
 necessary student accounts.
 
+The logins csv upload is expecting data in the following format:
+  username,password,role
+  myusername,mypassword,myrole
+  myusername2,mypassword2,myrole2
+  etc.
+  
+The sites zip upload is expecting a zip file in the following format:
+  sites.zip
+  |  student1
+  |  |  index.html
+  |  |  style.css
+  |  student2
+  |  |  index.html
+  etc.
+
 Note: Any instructor account can add new logins to the database The preexisting admin account is
 there to get you up and running as the site administrator.
 
