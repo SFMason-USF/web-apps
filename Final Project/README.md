@@ -48,8 +48,13 @@ myusername,mypassword,myrole myusername2,mypassword2,myrole2 etc.
 The sites zip upload is expecting a zip file in the following format:
 
 ```
-sites.zip | student1 | |
-index.html | | style.css | student2 | | index.html etc.
+sites.zip 
+|  student1 
+|  |  index.html 
+|  |  style.css 
+|  student2 
+|  |  index.html 
+|  etc.
 ```
 
 Note: Any instructor account can add new logins to the database The preexisting admin account is
