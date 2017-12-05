@@ -60,6 +60,18 @@ there to get you up and running as the site administrator.
 
 Once you have your accounts uploaded, you can access the site.
 
+## Administration
+
+There are a couple of things you need to know as administrator of your site.
+
+First, the accounts csv file should start with the following header row:
+
+```
+username,password,role
+```
+
+In the csv, role should either be "instructor" or "student".
+
 ## Built With
 
 * [jQuery](http://jquery.com/) - Front-end JavaScript library
