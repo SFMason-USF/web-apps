@@ -30,7 +30,11 @@ Your server will now be running on localhost port 5000.
 To view this app in a browser on the machine it is running, go to the url http://localhost:5000
 
 Now to start the database off as an admin, go to your site running on port 5000 and log in with the
-following credentials: username: admin password: admin
+following credentials:
+
+* username: admin
+
+* password: admin
 
 From there, you can access the instructor dashboard, and most importantly, upload a csv file
 containing login information. This way you can establish your own instructor account, as well as the
