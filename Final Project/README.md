@@ -40,37 +40,22 @@ From there, you can access the instructor dashboard, and most importantly, uploa
 containing login information. This way you can establish your own instructor account, as well as the
 necessary student accounts.
 
-The logins csv upload is expecting data in the following format:
-  username,password,role
-  myusername,mypassword,myrole
-  myusername2,mypassword2,myrole2
-  etc.
-  
+## Administration
+
+The logins csv upload is expecting data in the following format: username,password,role
+myusername,mypassword,myrole myusername2,mypassword2,myrole2 etc.
+
 The sites zip upload is expecting a zip file in the following format:
-  sites.zip
-  |  student1
-  |  |  index.html
-  |  |  style.css
-  |  student2
-  |  |  index.html
-  etc.
+
+```
+sites.zip | student1 | |
+index.html | | style.css | student2 | | index.html etc.
+```
 
 Note: Any instructor account can add new logins to the database The preexisting admin account is
 there to get you up and running as the site administrator.
 
-Once you have your accounts uploaded, you can access the site.
-
-## Administration
-
-There are a couple of things you need to know as administrator of your site.
-
-First, the accounts csv file should start with the following header row:
-
-```
-username,password,role
-```
-
-In the csv, role should either be "instructor" or "student".
+Once you have your accounts uploaded, you can use the site.
 
 ## Built With
 
