@@ -35,12 +35,13 @@ $(function() {
     }
 
     $("#search").on("change", function(event) {
+      var name = event.target.value;
       $.ajax({
-        url: DEBUG ? "sample-data.json" : "names",
+        url: "names/" + name,
         method: "GET",
-        data: event.target.value,
-        dataType: "json"
+        data: JSON
       }).done(function(rawData) {
+        rawData = JSON.parse(rawData);
         if (rawData == "No entered names found") {
           $("#name-not-found")
             .text("No entered names found")
@@ -80,8 +81,10 @@ $(function() {
         //  ["2000", name0 rating for 2000, name1 rating for 2000, etc.]
         //]
         console.log("rawData:", rawData);
+        console.log(rawData.name)
         chartData[0].push(rawData.name);
-        if (chartData.length !== rawData.ratings.length + 1) {
+        console.log(chartData)
+        if (chartData.length !== (rawData.ratings).length + 1) {
           throw new RangeError(
             "Invalid data received from server! Incorrect number of ratings provided."
           );
