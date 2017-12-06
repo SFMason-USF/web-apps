@@ -25,7 +25,8 @@ $(function() {
       },
       height: 400,
       title: "Name Rankings",
-      vAxis: { title: "Rank", direction: -1 },
+      vAxis: { title: "Rank", direction: -1, minValue: 0,
+          maxValue: 1001},
       width: 600
     };
     const chart = new google.visualization.LineChart($("#graph")[0]);
