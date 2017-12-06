@@ -45,7 +45,7 @@ get '/names/:name' do |n|
   n = n.downcase
   cond = n.chars.detect {|ch| !valid_chars.include?(ch)}.nil?
   if cond
-    my_name = MyNames.get(n).name
+    my_name = MyNames.get(n)
     if my_name
       my_years = Array.new
       my_years.push(MyNames.get(n).val1)
@@ -60,8 +60,8 @@ get '/names/:name' do |n|
       my_years.push(MyNames.get(n).val10)
       my_years.push(MyNames.get(n).val11)
 
-      {:name => my_name, :ratings => my_years}.to_json
+      {:name => n, :ratings => my_years}.to_json
     end
-  else "No entered names found"
+  else "error"
   end
 end

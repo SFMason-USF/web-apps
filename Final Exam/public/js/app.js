@@ -41,20 +41,12 @@ $(function() {
         method: "GET",
         data: JSON
       }).done(function(rawData) {
-        rawData = JSON.parse(rawData);
-        if (rawData == "No entered names found") {
+        if (rawData) {
+          rawData = JSON.parse(rawData);
           $("#name-not-found")
-            .text("No entered names found")
-            .parent()
-            .show();
-          $("#search").addClass("has-error");
-        } else {
-          $("#name-not-found")
-            .parent()
-            .hide();
+              .parent()
+              .hide();
           $("#search").removeClass("has-error");
-        }
-
         //Map name data provided by the server in the form:
         // {
         //   name: "name",
@@ -80,10 +72,8 @@ $(function() {
         //  ...
         //  ["2000", name0 rating for 2000, name1 rating for 2000, etc.]
         //]
-        console.log("rawData:", rawData);
-        console.log(rawData.name)
+
         chartData[0].push(rawData.name);
-        console.log(chartData)
         if (chartData.length !== (rawData.ratings).length + 1) {
           throw new RangeError(
             "Invalid data received from server! Incorrect number of ratings provided."
@@ -93,6 +83,14 @@ $(function() {
           chartData[i].push(rawData.ratings[i - 1]);
         }
         chart.draw(google.visualization.arrayToDataTable(chartData), options);
+        }
+        else {
+          $("#name-not-found")
+              .text("No entered names found")
+              .parent()
+              .show();
+          $("#search").addClass("has-error");
+        }
       });
     });
   });
