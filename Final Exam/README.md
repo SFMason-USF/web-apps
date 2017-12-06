@@ -1,79 +1,60 @@
-# Student Site Rating Site
+# Name Popularity Site
 
-This website will allow instructors to manage student web projects and students to rate those
-projects.
+This website will allow you to view the popularity of names from the last century
 
 ### Prerequisites
 
-Python 3
+Ruby 2.X
 
 ### Installing
 
-Install flask and passlib python libraries.
+Install the necessary gems.
 
 ```
-pip install flask
+gem install sinatra
 ```
 
 ```
-pip install passlib
+gem install dm-core
+```
+
+```
+gem install dm-migrations
+```
+
+```
+gem install data_mapper
+```
+
+```
+gem install dm-sqlite-adapter
+```
+
+```
+gem install json
 ```
 
 That's it! See deployment for further instructions.
 
+
 ## Deployment
 
-Run app.py.
+Run app.rb.
 
-Your server will now be running on localhost port 5000.
+Your server will now be running on localhost port 4567.
 
-To view this app in a browser on the machine it is running, go to the url http://localhost:5000
+To view this app in a browser on the machine it is running, go to the url http://localhost:4567
 
-Now to start the database off as an admin, go to your site running on port 5000 and log in with the
-following credentials:
+Now simply type in a name you wish to see then press enter. A graph will appear showing the popularity of that name for the last 100 years.
 
-* username: admin
+You can keep adding names, one a time, to see how they compare with each other.
 
-* password: admin
-
-From there, you can access the instructor dashboard, and most importantly, upload a csv file
-containing login information. This way you can establish your own instructor account, as well as the
-necessary student accounts.
-
-## Administration
-
-The logins csv upload is expecting data in the following format: 
-```
-username,password,role
-myusername,mypassword,myrole 
-myusername2,mypassword2,myrole2 
-etc.
-```
-Note: The logins csv must have the first row as described.
-
-
-The sites zip upload is expecting a zip file in the following format:
-
-```
-sites.zip 
-|  student1 
-|  |  index.html 
-|  |  style.css 
-|  student2 
-|  |  index.html 
-|  etc.
-```
-
-Note: Any instructor account can add new logins to the database The preexisting admin account is
-there to get you up and running as the site administrator.
-
-Once you have your accounts uploaded, you can use the site.
 
 ## Built With
 
 * [jQuery](http://jquery.com/) - Front-end JavaScript library
 * [Bootstrap](https://getbootstrap.com/) - Front-end style library
-* [Flask](http://flask.pocoo.org/) - Back-end server client library
+* [Sinatra](http://sinatrarb.com/) - Back-end server client library
 
 ## Authors
 
